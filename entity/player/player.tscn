@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://entity/player/player.gd" type="Script" id=1]
+[ext_resource path="res://entity/player/player.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 33.4249
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16.5456, 15.8844 )
+
+[sub_resource type="RayShape2D" id=2]
+
+custom_solver_bias = 0.0
+length = 5.41002
+
+[node name="player" type="RigidBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -13.1724 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 28.2819 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 2 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 39.868 )
+shapes/2/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 2
+mass = 1.0
+friction = 0.0
+bounce = 0.1
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 3
+contact_monitor = true
+sleeping = false
+can_sleep = false
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = 0.2
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+speed = 600
+max_velocity = 500
+jump = 250.0
+velocity_to_jump = 0.2
+jump_continuation = 0.7
+jump_debounce = 0.3
+jump_continuation_curve = 0.217637
+jump_continuation_velocity = 250.0
+moving_friction = 0.1
+standing_friction = 0.8
+slope_treshold = 0.4
+
+[node name="sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="shape_head" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, -13.1724 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="shape_body" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 28.2819 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 1
+
+[node name="shape_leg" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 39.868 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 2
+
+[node name="camera" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/smoothed = false
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = true
+smoothing/speed = 9.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="jump_ray_left" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( -15.93, 36.4112 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+layer_mask = 1
+type_mask = 15
+
+[node name="jump_ray_right" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( 15.93, 36.4112 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+layer_mask = 1
+type_mask = 15
+
+
