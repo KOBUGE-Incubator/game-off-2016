@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://entity/player/player.gd" type="Script" id=1]
+[ext_resource path="res://entity/entity.gd" type="Script" id=1]
 [ext_resource path="res://entity/player/player.png" type="Texture" id=2]
+[ext_resource path="res://entity/modules/movement.gd" type="Script" id=3]
+[ext_resource path="res://entity/modules/shooting.gd" type="Script" id=4]
+[ext_resource path="res://entity/shots/shot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entity/modules/player_input.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 33.4249
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16.5456, 15.8844 )
 
-[sub_resource type="RayShape2D" id=2]
+[sub_resource type="RayShape2D" id=3]
 
 custom_solver_bias = 0.0
 length = 5.41002
@@ -24,10 +28,10 @@ input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -13.1724 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 3 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 28.2819 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 2 )
+shapes/2/shape = SubResource( 3 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 39.868 )
 shapes/2/trigger = false
 collision/layers = 1
@@ -48,16 +52,6 @@ velocity/angular = 0.0
 damp_override/linear = 0.2
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
-speed = 600
-max_velocity = 500
-jump = 250.0
-velocity_to_jump = 0.2
-jump_continuation = 0.7
-jump_debounce = 0.3
-jump_continuation_curve = 0.217637
-jump_continuation_velocity = 250.0
-moving_friction = 0.1
-standing_friction = 0.8
 slope_treshold = 0.4
 
 [node name="sprite" type="Sprite" parent="."]
@@ -74,14 +68,14 @@ _update_shape_index = 0
 [node name="shape_body" type="CollisionShape2D" parent="."]
 
 transform/pos = Vector2( 0, 28.2819 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 1
 
 [node name="shape_leg" type="CollisionShape2D" parent="."]
 
 transform/pos = Vector2( 0, 39.868 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 2
 
@@ -122,5 +116,33 @@ exclude_parent = true
 cast_to = Vector2( 0, 10 )
 layer_mask = 1
 type_mask = 15
+
+[node name="modules" type="Node2D" parent="."]
+
+[node name="movement" type="Node2D" parent="modules"]
+
+script/script = ExtResource( 3 )
+speed = 600
+max_velocity = 500
+jump = 250.0
+velocity_to_jump = 0.2
+jump_continuation = 0.7
+jump_debounce = 0.3
+jump_continuation_curve = 0.210224
+jump_continuation_velocity = 250.0
+moving_friction = 0.1
+standing_friction = 0.7
+
+[node name="shooting" type="Node2D" parent="modules"]
+
+script/script = ExtResource( 4 )
+shot_scene = ExtResource( 5 )
+cooldown = 0.2
+offset = 20
+velocity_to_speed = 0.6
+
+[node name="player_input" type="Node2D" parent="modules"]
+
+script/script = ExtResource( 6 )
 
 
