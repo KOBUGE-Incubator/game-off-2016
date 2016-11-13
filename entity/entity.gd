@@ -11,13 +11,21 @@ var modules = []
 var is_grounded = false
 var inputs = {}
 
-func _ready():
+func _enter_tree():
+	add_to_group("entity")
 	update_modules()
 
 func update_modules():
+	var to_check = get_node("modules").get_children()
 	modules = []
-	for child in get_node("modules").get_children():
-		modules.push_back(child)
+	while to_check.size():
+		var module = to_check[to_check.size()-1]
+		to_check.pop_back()
+		
+		if module.get_script():
+			modules.push_back(module)
+		
+		to_check += module.get_children()
 	
 	inputs = {} # Reset only here, assume nobody does something evil
 	for module in modules:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://entity/entity.gd" type="Script" id=1]
-[ext_resource path="res://entity/player/player.png" type="Texture" id=2]
+[ext_resource path="res://entity/enemy/enemy.png" type="Texture" id=2]
 [ext_resource path="res://entity/modules/movement.gd" type="Script" id=3]
 [ext_resource path="res://entity/modules/shooting.gd" type="Script" id=4]
 [ext_resource path="res://entity/shots/shot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://entity/modules/player_input.gd" type="Script" id=6]
+[ext_resource path="res://entity/modules/ai/shoot_ai.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -15,14 +15,14 @@ radius = 33.4249
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16.5456, 15.8844 )
+extents = Vector2( 18.045, 15.8844 )
 
 [sub_resource type="RayShape2D" id=3]
 
 custom_solver_bias = 0.0
 length = 5.41002
 
-[node name="player" type="RigidBody2D"]
+[node name="enemy" type="RigidBody2D"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -57,6 +57,7 @@ slope_treshold = 0.4
 [node name="sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+offset = Vector2( 0.7, 0 )
 
 [node name="shape_head" type="CollisionShape2D" parent="."]
 
@@ -83,7 +84,7 @@ _update_shape_index = 2
 
 anchor_mode = 1
 rotating = false
-current = true
+current = false
 zoom = Vector2( 1, 1 )
 limit/left = -10000000
 limit/top = -10000000
@@ -141,8 +142,14 @@ cooldown = 0.2
 offset = 20
 velocity_to_speed = 0.6
 
-[node name="player_input" type="Node2D" parent="modules"]
+[node name="ai" type="Node2D" parent="modules"]
+
+[node name="shoot" type="Node2D" parent="modules/ai"]
 
 script/script = ExtResource( 6 )
+aim_offset = Vector2( 0, 0 )
+aim_velocity_bias = Vector2( 1, 0.5 )
+aim_velocity_bias_distance_scale = 600.0
+velocity_to_shot_speed = 0.6
 
 

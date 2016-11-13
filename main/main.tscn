@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://levels/level1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entity/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entity/enemy/enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entity/modules/player_input.gd" type="Script" id=4]
 
 [node name="main" type="Node2D"]
 
@@ -11,4 +13,26 @@
 
 transform/pos = Vector2( 325.184, 162.749 )
 
+[node name="enemy" parent="." instance=ExtResource( 3 )]
 
+transform/pos = Vector2( 2516.82, 953.726 )
+
+[node name="enemy4" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 692.135, 2372.29 )
+
+[node name="enemy2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 4274.21, 409.772 )
+
+[node name="enemy3" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 2382.92, 66.6625 )
+
+[node name="player_input" type="Node2D" parent="enemy3/modules"]
+
+script/script = ExtResource( 4 )
+
+
+[editable path="enemy3"]

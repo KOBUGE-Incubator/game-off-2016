@@ -12,7 +12,7 @@ length = 27.0
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( -1, 8.74228e-08, -8.74228e-08, -1, 0, 14.5105 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -14.5105 )
 shapes/0/trigger = false
 collision/layers = 0
 collision/mask = 2
@@ -20,7 +20,7 @@ mode = 0
 mass = 0.1
 friction = 1.0
 bounce = 0.0
-gravity_scale = 0.4
+gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 1
@@ -33,8 +33,7 @@ damp_override/linear = 0.01
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
 start_velocity = 600.0
-additional_velocity = 0
-materialization_time = 0
+materialization_time = 0.07
 
 [node name="sprite" type="Sprite" parent="."]
 
@@ -44,9 +43,7 @@ offset = Vector2( -0.5, 1 )
 
 [node name="shape" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 0, 14.5105 )
-transform/rot = 180.0
-transform/scale = Vector2( 1, 1 )
+transform/pos = Vector2( 0, -14.5105 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
