@@ -53,6 +53,7 @@ damp_override/linear = 0.2
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 slope_treshold = 0.4
+hackpoints = 100
 
 [node name="sprite" type="Sprite" parent="."]
 
@@ -148,8 +149,9 @@ velocity_to_speed = 0.6
 
 script/script = ExtResource( 6 )
 aim_offset = Vector2( 0, 0 )
-aim_velocity_bias = Vector2( 1, 0.5 )
+aim_velocity_bias = Vector2( 1, 0 )
 aim_velocity_bias_distance_scale = 600.0
 velocity_to_shot_speed = 0.6
+check_layers = 1
 
 

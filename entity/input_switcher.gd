@@ -7,8 +7,10 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("switch"):
+	if event.is_action_pressed("switch_next"):
 		next_input()
+	if event.is_action_pressed("switch_prev"):
+		prev_input()
 
 func register_input(input):
 	inputs.push_back(input)
@@ -30,3 +32,10 @@ func next_input():
 	if active_input >= inputs.size():
 		active_input -= inputs.size()
 	inputs[active_input].activate()
+func prev_input():
+	inputs[active_input].deactivate()
+	active_input -= 1
+	if active_input < 0:
+		active_input += inputs.size()
+	inputs[active_input].activate()
+

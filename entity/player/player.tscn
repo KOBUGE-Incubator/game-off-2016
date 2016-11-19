@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://entity/entity.gd" type="Script" id=1]
 [ext_resource path="res://entity/player/player.png" type="Texture" id=2]
 [ext_resource path="res://entity/modules/movement.gd" type="Script" id=3]
-[ext_resource path="res://entity/modules/shooting.gd" type="Script" id=4]
-[ext_resource path="res://entity/shots/shot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://entity/modules/player_input.gd" type="Script" id=6]
+[ext_resource path="res://entity/modules/hacking.gd" type="Script" id=4]
+[ext_resource path="res://entity/modules/player_input.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -53,6 +52,7 @@ damp_override/linear = 0.2
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 slope_treshold = 0.4
+hackpoints = 100
 
 [node name="sprite" type="Sprite" parent="."]
 
@@ -133,16 +133,13 @@ jump_continuation_velocity = 270.0
 moving_friction = 0.1
 standing_friction = 0.7
 
-[node name="shooting" type="Node2D" parent="modules"]
+[node name="hacking" type="Node2D" parent="modules"]
 
 script/script = ExtResource( 4 )
-shot_scene = ExtResource( 5 )
-cooldown = 0.2
-offset = 20
-velocity_to_speed = 0.6
+efficiency = 50.0
 
 [node name="player_input" type="Node2D" parent="modules"]
 
-script/script = ExtResource( 6 )
+script/script = ExtResource( 5 )
 
 

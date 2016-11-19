@@ -7,7 +7,6 @@ func _ready():
 	InputSwitcher.register_input(self)
 
 func _exit_tree():
-	entity.remove_from_group("player")
 	InputSwitcher.unregister_input(self)
 
 func activate():
@@ -18,10 +17,7 @@ func deactivate():
 	active = false
 
 func set_entity(_entity):
-	if entity != null:
-		entity.remove_from_group("player")
 	entity = _entity
-	entity.add_to_group("player")
 
 func set_inputs(inputs):
 	if active:
