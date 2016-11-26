@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://entity/entity.gd" type="Script" id=1]
+[ext_resource path="res://entity/platform/platform.png" type="Texture" id=2]
+[ext_resource path="res://entity/modules/path_movement.gd" type="Script" id=3]
+[ext_resource path="res://entity/modules/ai/platform_ai.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 92.5, 20 )
+
+[node name="platform" type="RigidBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 2
+mass = 10.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 8
+contact_monitor = true
+sleeping = false
+can_sleep = false
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+slope_treshold = 0.4
+hackpoints = 100
+
+[node name="sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="camera" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/smoothed = false
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="modules" type="Node2D" parent="."]
+
+[node name="path_movement" type="Node2D" parent="modules"]
+
+script/script = ExtResource( 3 )
+speed = 100.0
+max_velocity = 400.0
+bounce = 0.0
+rotating = false
+
+[node name="ai" type="Node2D" parent="modules"]
+
+[node name="platform" type="Node2D" parent="modules/ai"]
+
+script/script = ExtResource( 4 )
+stay_time = 1.0
+
+

@@ -55,6 +55,6 @@ func get_targets():
 	var wanted = !entity.has_module("player_input")
 	var targets = []
 	for target in possible_targets:
-		if target.has_module("player_input") == wanted:
+		if target.has_module("player_input") == wanted and not target.has_module("path_movement"):
 			targets.push_back(target)
 	return targets

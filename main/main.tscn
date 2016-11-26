@@ -11,11 +11,11 @@
 
 [node name="player" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 325.184, 162.749 )
+transform/pos = Vector2( 5249.73, 446.947 )
 
 [node name="enemy" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 2516.82, 953.726 )
+transform/pos = Vector2( 3284.67, 77.6265 )
 
 [node name="enemy4" parent="." instance=ExtResource( 3 )]
 

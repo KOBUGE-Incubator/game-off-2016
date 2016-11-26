@@ -99,7 +99,7 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
-[node name="jump_ray_left" type="RayCast2D" parent="."]
+[node name="foot_left" type="RayCast2D" parent="."]
 
 transform/pos = Vector2( -15.93, 36.4112 )
 enabled = true
@@ -108,7 +108,7 @@ cast_to = Vector2( 0, 10 )
 layer_mask = 1
 type_mask = 15
 
-[node name="jump_ray_right" type="RayCast2D" parent="."]
+[node name="foot_right" type="RayCast2D" parent="."]
 
 transform/pos = Vector2( 15.93, 36.4112 )
 enabled = true
@@ -136,7 +136,7 @@ standing_friction = 0.7
 [node name="hacking" type="Node2D" parent="modules"]
 
 script/script = ExtResource( 4 )
-efficiency = 50.0
+efficiency = 2000.0
 
 [node name="player_input" type="Node2D" parent="modules"]
 
