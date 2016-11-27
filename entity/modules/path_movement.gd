@@ -8,14 +8,16 @@ export(bool) var rotating = false
 var entity = null
 var path_follow = null
 var reached_end = 0
+var looping = false
 var curve_length = 0
 
 func set_entity(_entity):
-	entity = _entity
-	if path_follow:
-		path_follow.queue_free()
-		path_follow = null
-	call_deferred("setup_path_follow")
+	if entity != _entity:
+		entity = _entity
+		if path_follow:
+			path_follow.queue_free()
+			path_follow = null
+		call_deferred("setup_path_follow")
 
 func setup_path_follow():
 	path_follow = PathFollow2D.new()
@@ -23,9 +25,10 @@ func setup_path_follow():
 	var curve = entity.get_parent().get_curve()
 	curve_length = curve.get_baked_length()
 	if curve.get_point_pos(0).distance_to(curve.get_point_pos(curve.get_point_count() - 1)) < 1:
-		path_follow.set_loop(true)
+		looping = true
 	else:
-		path_follow.set_loop(false)
+		looping = false
+	path_follow.set_loop(looping)
 	
 	entity.get_parent().add_child(path_follow)
 	entity.set_pos(path_follow.get_pos())
@@ -49,10 +52,10 @@ func integrate_forces(state, inputs):
 	var old_path_follow_offset = path_follow.get_offset()
 	path_follow.set_offset(path_follow.get_offset() - path_velocity * delta)
 	
-	if path_follow.get_offset() >= curve_length:
+	if path_follow.get_offset() >= curve_length and !looping:
 		reached_end = 1
 		path_velocity = 0
-	elif path_follow.get_offset() <= 0:
+	elif path_follow.get_offset() <= 0 and !looping:
 		reached_end = -1
 		path_velocity = 0
 	else:

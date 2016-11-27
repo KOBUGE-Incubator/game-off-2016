@@ -18,9 +18,11 @@ func _enter_tree():
 
 func _integrate_forces(state):
 	inputs.is_grounded = false
+	inputs.ground = null
 	for foot in feet:
 		if foot.is_colliding() and foot.get_collision_normal().dot(Vector2(0, -1)) > slope_treshold:
 			inputs.is_grounded = true
+			inputs.ground = foot.get_collider()
 			break
 	
 	for module in modules:
@@ -48,6 +50,9 @@ func module_get_name(module):
 
 func get_hackpoints():
 	return hackpoints
+
+func get_inputs():
+	return inputs
 
 func update_modules():
 	module_names = {}

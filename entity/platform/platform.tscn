@@ -72,7 +72,7 @@ drag_margin/bottom = 0.2
 [node name="path_movement" type="Node2D" parent="modules"]
 
 script/script = ExtResource( 3 )
-speed = 100.0
+speed = 300.0
 max_velocity = 400.0
 bounce = 0.0
 rotating = false
@@ -82,6 +82,8 @@ rotating = false
 [node name="platform" type="Node2D" parent="modules/ai"]
 
 script/script = ExtResource( 4 )
-stay_time = 1.0
+power = 0.3
+deactivate_stay_time = 2.0
+stay_time = 1.5
 
 

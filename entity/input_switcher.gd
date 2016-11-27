@@ -32,10 +32,18 @@ func next_input():
 	if active_input >= inputs.size():
 		active_input -= inputs.size()
 	inputs[active_input].activate()
+
 func prev_input():
 	inputs[active_input].deactivate()
 	active_input -= 1
 	if active_input < 0:
 		active_input += inputs.size()
 	inputs[active_input].activate()
+
+func switch_to(input_object):
+	var new_input = inputs.find(input_object)
+	if new_input >= 0:
+		inputs[active_input].deactivate()
+		active_input = new_input
+		inputs[active_input].activate()
 
